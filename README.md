@@ -6,3 +6,8 @@ https://devchallenges.io/editor/solution/23422
 
 to run with nodemon
 npm run dev
+
+Frontend:
+cd my-taskboard-app
+npm install
+npm run dev
