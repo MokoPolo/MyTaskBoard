@@ -1,5 +1,10 @@
 import express, { Request, Response } from 'express';
 import { getAllTasks, addTask, deleteTask } from './taskRepository';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const apiKey = process.env.API_KEY; // Retrieve the environment variable
+console.log('API Key:', apiKey);
 
 const app = express();
 
