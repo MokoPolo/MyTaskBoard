@@ -2,35 +2,11 @@ import express, { Request, Response } from 'express';
 import { getAllTasks, addTask, deleteTask } from './taskRepository';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import connectDB from './db';
 
 dotenv.config();
 
-const password = process.env.DB_PASS;
-if (!password) {
-  throw new Error('Database URL is not defined.');
-}
-
-const databaseUrl = process.env.DATABASE?.replace('<PASSWORD>', password);
-
-if (!databaseUrl) {
-  throw new Error('Database URL is not defined.');
-}
-
-mongoose
-  .connect(databaseUrl)
-  .then(() => {
-    console.log('Connected to the database');
-  })
-  .catch((error) => {
-    console.log('Error connecting to the database', error);
-  });
-
-const taskSchema = new mongoose.Schema({
-  name: String,
-  completed: Boolean,
-});
-
-const Task = mongoose.model('Task', taskSchema);
+connectDB();
 
 const app = express();
 
